@@ -82,7 +82,9 @@ public class EnemyScript : MonoBehaviour
     {
         //Stop enemy
         agent.SetDestination(transform.position);
+        
         transform.LookAt(player);
+        
         if(!alreadyAttacked)
         {
             //Attack
