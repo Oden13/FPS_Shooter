@@ -8,6 +8,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
     public float speed = 12f;
+
+    public AudioSource audioSource;
+    public AudioClip jumpSound, pickUpSound;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
     public Transform groundCheck;
@@ -35,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
             key2 = GameObject.Find("blueKey");
             key3 = GameObject.Find("yellowKey");
         }
+
+     public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -51,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
    if(Input.GetButtonDown("Jump") && isGrounded)
    {
+       PlaySound(jumpSound);
        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
    }
    if (currentStamina > 0.20f)
@@ -125,6 +134,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 redKey += 1;
                 Destroy(collision.gameObject);
+                PlaySound(pickUpSound);
             }
         }
         if(collision.gameObject.tag == "blueKey")
@@ -133,6 +143,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 blueKey += 1;
                 Destroy(collision.gameObject);
+                PlaySound(pickUpSound);
             }
         }
         if(collision.gameObject.tag == "yellowKey")
@@ -141,6 +152,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 yellowKey += 1;
                 Destroy(collision.gameObject);
+                PlaySound(pickUpSound);
             }
         }
         if(collision.gameObject.tag == "ExitDoor")
