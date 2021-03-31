@@ -7,16 +7,20 @@ public class PauseMenu : MonoBehaviour {
 
     public static bool gamePaused = false;
     public GameObject pauseMenu;
-
     public GameObject player;
-    void Start () {
 
-    }
-    void Update () {
-        if (Input.GetKeyDown (KeyCode.P)) {
-            if (gamePaused) {
+    void Start()
+    {
+    }   
+     void Update () 
+    {
+        if (Input.GetKeyDown (KeyCode.P)) 
+        {
+            if (gamePaused) 
+            {
                 ResumeGame ();
-            } else {
+            } else 
+            {
                 PauseGame ();
             }
         }
@@ -32,6 +36,8 @@ public class PauseMenu : MonoBehaviour {
         Time.timeScale = 0f;
         player.gameObject.SetActive(false);
         gamePaused = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     public void quitgame () {
         Application.Quit ();
