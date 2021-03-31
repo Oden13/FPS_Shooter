@@ -159,6 +159,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if(redKey == 1 && blueKey == 1 && yellowKey == 1)
             {
+                Cursor.visible = true;
                 SceneManager.LoadScene("WinScreen");
             }
             else
