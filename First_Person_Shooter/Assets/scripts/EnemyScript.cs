@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
+
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
@@ -104,7 +105,7 @@ public class EnemyScript : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         if(health <= 0) Invoke(nameof(Death), 0.5f);
