@@ -143,5 +143,16 @@ public class PlayerMovement : MonoBehaviour
                 Destroy(collision.gameObject);
             }
         }
+        if(collision.gameObject.tag == "ExitDoor")
+        {
+            if(redKey == 1 && blueKey == 1 && yellowKey == 1)
+            {
+                SceneManager.LoadScene("WinScreen");
+            }
+            else
+                {
+                Debug.Log("this Works");
+            }
+        }
     }
 }

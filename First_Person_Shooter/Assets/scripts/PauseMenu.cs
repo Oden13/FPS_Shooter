@@ -7,6 +7,8 @@ public class PauseMenu : MonoBehaviour {
 
     public static bool gamePaused = false;
     public GameObject pauseMenu;
+
+    public GameObject player;
     void Start () {
 
     }
@@ -23,10 +25,12 @@ public class PauseMenu : MonoBehaviour {
         pauseMenu.SetActive (false);
         Time.timeScale = 1f;
         gamePaused = false;
+        player.gameObject.SetActive(true);
     }
     public void PauseGame () {
         pauseMenu.SetActive (true);
         Time.timeScale = 0f;
+        player.gameObject.SetActive(false);
         gamePaused = true;
     }
     public void quitgame () {
