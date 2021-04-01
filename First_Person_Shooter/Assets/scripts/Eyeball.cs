@@ -3,21 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyScript : MonoBehaviour
+public class Eyeball : MonoBehaviour
 {
-
-    public NavMeshAgent agent;
+    // Start is called before the first frame update
     public Transform player;
-    public LayerMask whatIsGround, whatIsPlayer;
+    public NavMeshAgent agent;
+    public LayerMask whatIsPlayer;
     public float health;
 
     //projectile
     public GameObject projectile;
-
-    //Patrol
-    public Vector3 walkPoint;
-    bool walkPointSet;
-    public float walkPointRange;
 
     //Attack
     public float timeBetweenAttacks;
@@ -45,38 +40,7 @@ public class EnemyScript : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if(!playerInSightRange && !playerInAttackRange) Patroling();
-        if(playerInSightRange && !playerInAttackRange) ChasePlayer();
         if(playerInAttackRange && playerInSightRange) AttackPlayer();
-    }
-
-    private void Patroling()
-    {
-        if(!walkPointSet) SearchWalkPoint();
-
-        if(walkPointSet)
-            agent.SetDestination(walkPoint);
-
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-        if (distanceToWalkPoint.magnitude < 1f)
-            walkPointSet = false;
-    }
-
-    private void SearchWalkPoint()
-    {
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-        if(Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-            walkPointSet = true;
-    }
-
-    private void ChasePlayer()
-    {
-        agent.SetDestination(player.position);
     }
 
     private void AttackPlayer()
@@ -89,10 +53,13 @@ public class EnemyScript : MonoBehaviour
         if(!alreadyAttacked)
         {
             //Attack
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            //Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
 
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+            //rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            //rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+
+            GameObject shot = GameObject.Instantiate(projectile, transform.position, transform.rotation);
+            shot.GetComponent<Rigidbody>().AddForce(transform.forward);
 
             ///
             alreadyAttacked = true;
