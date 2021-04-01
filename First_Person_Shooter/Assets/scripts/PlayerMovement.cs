@@ -62,19 +62,19 @@ public class PlayerMovement : MonoBehaviour
        PlaySound(jumpSound);
        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
    }
-   if (currentStamina > 0.20f)
+   if (currentStamina > 0.040f)
         {
             if(Input.GetKey(KeyCode.LeftShift))
             {
-                UseStamina(0.20f);
-                speed = 12f;
+                UseStamina(0.040f);
+                speed = 14f;
             }
             else
             {
                 speed = 7f;
             }
         }
-        else if (currentStamina < 0.20f)
+        else if (currentStamina < 0.040f)
         {
             staminaBarShift.value = currentStamina;
             speed = 7f;
