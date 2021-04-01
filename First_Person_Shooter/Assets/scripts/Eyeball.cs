@@ -81,6 +81,7 @@ public class Eyeball : MonoBehaviour
     private void Death()
     {
         Destroy(gameObject);
+
     }
 
     private void OnDrawGizmosSelected()
