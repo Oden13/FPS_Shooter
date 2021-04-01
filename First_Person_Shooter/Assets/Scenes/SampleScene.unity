@@ -11390,7 +11390,7 @@ MonoBehaviour:
   controller: {fileID: 1842420096}
   speed: 12
   audioSource: {fileID: 1842420099}
-  jumpSound: {fileID: 8300000, guid: 2d371a3d8c962d34bbeaa2723bbcd782, type: 3}
+  jumpSound: {fileID: 8300000, guid: 1457e661e69f3384baa3c32dcbfe1516, type: 3}
   pickUpSound: {fileID: 8300000, guid: 1457e661e69f3384baa3c32dcbfe1516, type: 3}
   gravity: -19.62
   jumpHeight: 3
